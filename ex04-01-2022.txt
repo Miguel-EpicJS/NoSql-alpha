@@ -1,0 +1,32 @@
+1.
+
+Tipos: Modelo colunas, grafos, chave-valor, documento
+
+Modelo colunas: armazena os dados em várias colunas, é oposto aos bancos de dados relacionais, permite maior compressão de dados, principalmente usado para lidar com grande volume de informações com fontes distintas.
+
+Modelo grafos: armaneza os dados em forma de grafos ou linhas conectadas, principalmente usado para sistemas de recomendação e pesquisas complexas.
+
+Modelo chave-valor: armazena os dados em pares, possuindo chaves acompanhadas de valores, é principalmente usado para armazenamento big data ou carrinhos de compras.
+
+Modelo Documento: armazena os dados em documentos, normalmente jsons, facilitando a manipulação dos dados nos códigos, normalmente utilizado em blogs e catálogos.
+
+2.
+
+Por que o teorema CAP é importante?
+R: Ele é importante, pois consegue resolver o problema de custos tanto de velocidade quanto de processamento, pois o ACID é extremamente extrito com relação aos dados, por exemplo, com o ACID, se você postar um post no facebook, todos os seus amigos terão que ver o post ao mesmo tempo, mas isso não faz diferença, se um like entrar 1 segundo ou 20 minutos atrasado, não vai mudar nada, por isso com o CAP podemos abandonar a consistência, outra coisa é a tolerância, se uma query sql falhar, todas as outras não serão executadas, o que no caso de um transação bancária isso é importante, mas se um search do facebook falhar, não significa que todos os outros serviços irão parar de funcionar.
+
+Os bancos de dados não-relacionais obedecem a este teorema?
+R: A maioria sim, mas os bancos de dados nosql significam que eles são não-relacionais, e não não-ACID, portanto é possível utilizar ACID, mesmo que raramente utilizados, pois NoSQL trabalham com alto tráfego de dados, deixando custoso utilizar ACID.
+
+3. Como o MongoDB se relaciona com o teorema CAP e em qual tipo de de banco de dados ele é categorizado? Explique.
+R: MongoDB tem uma grande consistencia para escrita e leitura, ele também possui tolerância parcial utilizando Replica-Sets, mas sacrifica a disponibilidade, possuindo C e P do teorema CAP, em relação ao tipo, o MongoDB armazena seus dados em um modelo json de forma autocontida e autodescritiva, encaixando-o no modelo orientado a documentos.
+
+4. Quais as diferenças dos produtos ´Atlas´, ´Enterprise´ e ´Community Edition´ disponibilizados pelo site oficial do MongoDB?
+R: 
+
+Community: A versão community requer que você mesmo configure a segurança, deploys, monitoração, entre outros
+Atlas: uma versão do MongoDB que é gerenciada pelo próprio time que crio o MongoDB, possui tudo que o Community possui, além de ser automáticamente configurada da melhor maneira padrão.
+Enterprise: possui tudo que o Atlas e Community possui, além de Encrypted Storage Engine, que criptografa seus dados, In-memory Storage Engine, permitindo baixa latência e uma maior segurança com Advanced Security
+
+
+

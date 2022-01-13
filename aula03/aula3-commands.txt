@@ -1,0 +1,16 @@
+use enterprise
+
+db.client.insertOne({username: "Alpha", email: "edtech@alpha.com", password: "#KenjiHardCore", price: 15.99, preference: "High"})
+db.client.insertOne({username: "Joaozinho", email: "jojo@gmail.com", password: "senha123", price: 0.99, preference: "Low"})
+db.client.insertOne({username: "Miguel", email: "miguel@gmail.com", password: "umasenhadificileesperta", price: 10.99, preference: "Mid"})
+db.client.insertOne({username: "asd", email: "asd@asd.com", password: "asd", price: 100.99, preference: "Super High"})
+
+db.client.find()
+db.client.find({price: {$gt: 10.00 }})
+
+db.client.updateMany({preference: {$in: ["High", "Super High"]}}, {$set: { preference: "VIP+" }})
+db.client.updateMany({preference: {$in: ["Mid"]}}, {$set: { preference: "VIP" }})
+db.client.updateMany({preference: {$in: ["Low"]}}, {$set: { preference: "Normal" }})
+
+db.client.deleteMany({ price: {$lt: 10.00} } )
+
