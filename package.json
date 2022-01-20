@@ -9,6 +9,8 @@
   "author": "Miguel Junqueira Nicacio Martinez",
   "license": "MIT",
   "dependencies": {
+    "browserlist": "^1.0.1",
+    "caniuse-lite": "^1.0.30001300",
     "mongoose": "^6.1.6"
   }
 }
