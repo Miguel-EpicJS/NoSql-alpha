@@ -1,0 +1,16 @@
+1. Aggregation, de modo geral consiste na agregação de dados/informações de maneira agrupada, onde o resultado pode ser apenas um novo dado, como uma contagem, por exemplo a contagem de todos os usúarios que estão logados em seu aplicativo, ou um conjunto de dados agrupados, por exemplo pegar a informação de todos os usúarios que estãos logados invés de apenas pegar sua quantidade, é possível realizar agrupações com qualquer banco de dados ou linguagem de programação, mas o MongoDB possui uma linguagem específica para agrupamentos onde é possível realizar aggregations de maneira simples e intuitiva.
+
+2. Pipeline no MongoDB Aggregation é o conjunto de 1 ou mais stages(etapas em uma operação Aggregation), podemos utilizar como exemplo de pipeline uma operação que pega a soma de todos os clientes de uma preferência específica.
+R: [ { $match: { preference: "VIP" } }, { $group: { _id: "$preference", sumTotPrice: { $sum: "$price" } } }]
+
+3. Single Purpose Aggregation no MongoDB é apenas uma agregação com um único propósito que pode ser rapidamente executada, por exemplo se você quiser contar todos os clientes, não precisa executar um: db.client.aggregate([ { $count: "all_clients" }  ]), apenas com um db.client.countDocuments() é possível contar todos os elementos da collecton client, mas caso seja necessário executar outras coisas além de contar não será possível com um Single Purpose Aggregation
+
+4. O MapReduce serve para processar grandes quantidades de informações em conjuntos agregados úteis, ela é dividida em 3 partes principais, uma função de mapeamento(Map) que recebe uma chave(index/id, normalmente referido como k') e um dado(normalmente referido como v'), em seguida o resultado entra para a segunda fase onde a informação(Shuffle e Sort) onde a informação é distribuida e então ordenada em chaves similares, transformando o dado(v') em um array de dados com mesma chave(v[]), por fim a terceira fase é o Reducer, nessa fase os dados são reduzidos de acordo com a função específicada, por exemplo a soma dos preços, e por fim mostrada na tela(ou no dispositivo de saída padrão, como um arquivo txt, etc)
+
+5. Utilizando MapReduce para obter a soma do 'price' de totas as 'preference', utilizamos o seguinte comando:
+    db.client.mapReduce( function() { emit(this.preference, this.price) }, function(key, values) { return Array.sum( values ) }, { out: {inline: 1}  })
+
+Para realizar o mesmo agrupamento com pipeline, executamos:
+    db.client.aggregate([ { $group: { _id: "$preference", value: { $sum: "$price" }   } } ])
+
+

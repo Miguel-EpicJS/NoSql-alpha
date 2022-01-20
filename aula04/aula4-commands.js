@@ -53,7 +53,22 @@ module.exports = {
     },
 
     aggregationForClients: (client) => {
-        client.aggregate([ { $match: { price: {$gte: 0} } }, { $group: { _id: "$preference", sumPrice: { $sum: "$price" } } }], (err, cl) => {
+        client.aggregate([ { $match: { price: {$gte: 0} } }, { $group: { _id: "$preference", sumTotPrice: { $sum: "$price" } } }], (err, cl) => {
+            console.log(cl);
+            console.log(err);
+        });
+
+        client.aggregate([ { $match: { preference: "VIP+" } }, { $group: { _id: "$preference", sumTotPrice: { $sum: "$price" } } }], (err, cl) => {
+            console.log(cl);
+            console.log(err);
+        });
+
+        client.aggregate([ { $match: { preference: "VIP" } }, { $group: { _id: "$preference", sumTotPrice: { $sum: "$price" } } }], (err, cl) => {
+            console.log(cl);
+            console.log(err);
+        });
+
+        client.aggregate([ { $match: { preference: "Normal" } }, { $group: { _id: "$preference", sumTotPrice: { $sum: "$price" } } }], (err, cl) => {
             console.log(cl);
             console.log(err);
         });

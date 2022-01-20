@@ -1,1 +1,0 @@
-db.client.aggregate([ { $match: { preference: "VIP+" } }, sumPrice: { $sum: "$price" }  ])
